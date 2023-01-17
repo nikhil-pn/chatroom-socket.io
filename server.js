@@ -28,6 +28,10 @@ io.on("connection", (socket)=>{
 
         socket.emit("updateChat", "INFO", "you have joined Global Chat")
     })
+    socket.on("message", (data)=>{
+        console.log("msg recieved here",data)
+        io.sockets.to(socket.currentRoom).emit("updateChat", socket.username, data)
+    })
 })
 
 server.listen(PORT, () => {

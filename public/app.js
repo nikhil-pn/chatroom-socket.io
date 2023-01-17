@@ -20,8 +20,15 @@ socket.on("connect", (username)=>{
 
 socket.on("updateChat", (username, data)=>{
     if(username === 'INFO'){
-        chatDisplay.innerHTML =`<div class='announcement'><span>${data}</span></div>`
+        chatDisplay.innerHTML +=`<div class='announcement'><span>${data}</span></div>`
     }else{
-        console.log("reached else part here " )
+        chatDisplay.innerHTML += `<div > <h2>${data} </h2> </div>`
     }
+    chatDisplay.scrollTop = chatDisplay.scrollHeight;
+})
+
+sendMessageBtn.addEventListener("click", ()=>{
+    console.log(message, 'message');
+    socket.emit("message", message.value)
+    message.value = ""
 })
