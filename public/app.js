@@ -19,8 +19,22 @@ socket.on("connect", (username) => {
 socket.on("updateChat", (username, data) => {
   if (username === "INFO") {
     chatDisplay.innerHTML += `<div class='announcement'><span>${data}</span></div>`;
+    //   } else {
+    //     chatDisplay.innerHTML += `<div > <h2>${data} </h2> </div>`;
+    //   }
   } else {
-    chatDisplay.innerHTML += `<div > <h2>${data} </h2> </div>`;
+    //styled chat version
+    chatDisplay.innerHTML += `<div class="message_holder ${
+      username === myUsername ? "me" : ""
+    }">
+                                          <div class="pic"></div>
+                                          <div class="message_box">
+                                            <div id="message" class="message">
+                                              <span class="message_name">${username}</span>
+                                              <span class="message_text">${data}</span>
+                                            </div>
+                                          </div>
+                                        </div>`;
   }
   chatDisplay.scrollTop = chatDisplay.scrollHeight;
 });
